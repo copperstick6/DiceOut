@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //created a short message
         Toast.makeText(getApplicationContext(),"Welcome to DiceOut!", Toast.LENGTH_SHORT).show();
         currentScore = (TextView) findViewById(R.id.totScore);
-        score = 0;
+        score = 1000;
         die = new ArrayList<Integer>();
         images = new ArrayList<ImageView>();
         ImageView die1Image = (ImageView) findViewById(R.id.dice1Image);
@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         images.add(die1Image);
         images.add(die2Image);
         images.add(die3Image);
-        rollResult = (TextView)findViewById(R.id.rollResult);
         rollButton = (Button)findViewById(R.id.rollButton);
     }
     public void rollDice(View viewer){
