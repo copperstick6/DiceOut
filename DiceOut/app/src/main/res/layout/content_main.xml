@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rollButton"
-        android:layout_below="@+id/dice5Image"
+        android:layout_below="@+id/dice2Image"
         android:onClick="rollDice"
         android:layout_centerHorizontal="true" />
 
@@ -30,15 +30,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id = "@+id/dice1Image"
-        android:layout_below = "@id/rollResult"
-        android:layout_marginTop = "25dp"
-        android:layout_alignParentLeft = "true"
-        android:src = "@drawable/die_face_1"
-        />
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -46,15 +38,34 @@
         android:layout_below = "@id/rollResult"
         android:layout_marginTop = "25dp"
         android:layout_centerHorizontal = "true"
-        android:src = "@drawable/die_face_2"
+        android:src = "@drawable/die_face_1"
         />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id = "@+id/dice1Image"
+        android:src = "@drawable/die_face_1"
+        android:layout_alignTop="@+id/dice2Image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id = "@+id/dice3Image"
-        android:layout_below = "@id/rollResult"
-        android:layout_marginTop = "25dp"
-        android:layout_alignParentRight = "true"
-        android:srce = "@drawable/die_face_3"
-        />
+        android:src = "@drawable/die_face_1"
+        android:layout_alignTop="@+id/dice2Image"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id = "@+id/totScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Current Score: 0"
+        android:layout_marginBottom = "50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal = "true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 </RelativeLayout>

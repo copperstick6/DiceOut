@@ -1,5 +1,7 @@
 package com.example.copperstick6.diceout;
 
+
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,17 +11,21 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     public TextView rollResult;
     public int score;
     public Button rollButton;
-    public ArrayList<Integer> die = new ArrayList<Integer>();
-
+    public ArrayList<Integer> die;
+    public ArrayList<ImageView> images;
+    public TextView currentScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,29 +39,44 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("A ction", null).show();
+                        .setAction("Action", null).show();
             }
         });
-        score = 0;
-
-        rollResult = (TextView)findViewById(R.id.rollResult);
-        rollButton = (Button)findViewById(R.id.rollButton);
         //created a short message
         Toast.makeText(getApplicationContext(),"Welcome to DiceOut!", Toast.LENGTH_SHORT).show();
+        currentScore = (TextView) findViewById(R.id.totScore);
+        score = 0;
+        die = new ArrayList<Integer>();
+        images = new ArrayList<ImageView>();
+        ImageView die1Image = (ImageView) findViewById(R.id.dice1Image);
+        ImageView die2Image = (ImageView) findViewById(R.id.dice2Image);
+        ImageView die3Image = (ImageView) findViewById(R.id.dice3Image);
+        images = new ArrayList<ImageView>();
+        images.add(die1Image);
+        images.add(die2Image);
+        images.add(die3Image);
+        rollResult = (TextView)findViewById(R.id.rollResult);
+        rollButton = (Button)findViewById(R.id.rollButton);
     }
     public void rollDice(View viewer){
-        rollResult.setText("Clicked!");
-      /*  int numberGenerated = (int)(6*Math.random()) + 1;
-        String randVal = "Number Generated: " + numberGenerated;
-        Toast.makeText(getApplicationContext(), randVal, Toast.LENGTH_SHORT).show();*/
+        die.clear();
         int die1 = (int)(6*Math.random()) + 1;
         int die2 = (int)(6*Math.random()) + 1;
         int die3 = (int)(6*Math.random()) + 1;
         die.add(die1);
         die.add(die2);
         die.add(die3);
-        String msg = " I rolled a total of: " + (die1 + die2 + die3) + ". \n You rolled a " + die1 + ", " + die2 + ", " + die3 + ".";
-        rollResult.setText(msg);
+        for(int curDice = 0; curDice < 3; curDice++){
+            String imageName = "die_face_" + die.get(curDice) + ".png";
+            try{
+                InputStream stream = getAssets().open(imageName);
+                Drawable curImage = Drawable.createFromStream(stream,null);
+                images.get(curDice).setImageDrawable(curImage);
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
